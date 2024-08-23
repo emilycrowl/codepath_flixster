@@ -12,11 +12,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.codepath.asynchttpclient.AsyncHttpClient
 import com.codepath.asynchttpclient.RequestParams
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler
+import com.example.flixster.models.Movie
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import okhttp3.Headers
 
-private const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+const val API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed"
+private const val NP_URL = "https://api.themoviedb.org/3/movie/now_playing"
+private const val U_URL = "https://api.themoviedb.org/3/movie/upcoming"
 private const val TAG = "MovieFragment"
 
 class MovieFragment : Fragment() {
@@ -48,7 +51,8 @@ class MovieFragment : Fragment() {
 
         // perform the HTTP request
         client[
-            "https://api.themoviedb.org/3/movie/now_playing",
+            // NP_URL, // changing requested data
+            U_URL,
             params,
             object : JsonHttpResponseHandler()
             {
@@ -65,7 +69,7 @@ class MovieFragment : Fragment() {
                     val arrayTutorialType = object : TypeToken<List<Movie>>() {}.type
                     val models : List<Movie> = gson.fromJson(resultsRawJSON, arrayTutorialType)
 
-                    recyclerView.adapter = MovieAdapter.MovieAdapter(models, this@MovieFragment)
+                    recyclerView.adapter = MovieAdapter(models, this@MovieFragment)
 
                     Log.d(TAG, models[0].posterUrl.toString())
                     Log.d(TAG, "onSuccess")

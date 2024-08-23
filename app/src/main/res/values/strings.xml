@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">flixster</string>
     <string name="movie_poster">Movie Poster</string>
+    <string name="movie_title">Movie Title</string>
+    <string name="movie_tagline">Movie Tagline</string>
+    <string name="genres">Genres</string>
+    <string name="movie_description">Movie Description</string>
+    <string name="cast">Cast</string>
+    <string name="crew">Crew</string>
+    <string name="no_description">No Description</string>
 </resources>
